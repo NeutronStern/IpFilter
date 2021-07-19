@@ -11,3 +11,4 @@ CTestTestfile.cmake
 CPackConfig.cmake
 CPackSourceConfig.cmake
 _deps
+bin

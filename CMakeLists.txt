@@ -12,6 +12,7 @@ add_executable(ip_filter ip_filter.cpp)
 set_target_properties(ip_filter ip_filter PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 target_include_directories(ip_filter
     PRIVATE "${CMAKE_BINARY_DIR}"
