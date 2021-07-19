@@ -16,7 +16,13 @@ struct Ip {
         istringstream tokenize_stream(source);
         string s;
         while(getline(tokenize_stream, s, '.')) {
+            try{
             Parts.push_back(stoi(s));
+            }catch(std::invalid_argument & e) {
+                cout << "Can not parse "<<s<<": "<<e.what()<<endl;
+            }catch(std::out_of_range & e) {
+                cout << "Can not parse "<<s<<": "<<e.what()<<endl;
+            }
         }
     }
     Ip () = default;
