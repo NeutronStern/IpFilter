@@ -19,7 +19,26 @@ struct Ip {
             Parts.push_back(stoi(s));
         }
     }
-    Ip (){};
+    Ip () = default;
+
+    bool operator>(const Ip another) const {
+        return (Parts[0] > another.Parts[0])
+            || (Parts[0] == another.Parts[0] && Parts[1] > another.Parts[1])
+            || (Parts[1] == another.Parts[1] && Parts[2] > another.Parts[2])
+            || (Parts[2] == another.Parts[2] && Parts[3] > another.Parts[3]);
+    } 
+    bool operator<(const Ip another) const {
+        return (Parts[0] < another.Parts[0])
+            || (Parts[0] == another.Parts[0] && Parts[1] < another.Parts[1])
+            || (Parts[1] == another.Parts[1] && Parts[2] < another.Parts[2])
+            || (Parts[2] == another.Parts[2] && Parts[3] < another.Parts[3]);
+    } 
+    bool operator==(const Ip another) const {
+        return Parts[0] == another.Parts[0]
+            && Parts[1] == another.Parts[1]
+            && Parts[2] == another.Parts[2]
+            && Parts[3] == another.Parts[3];
+    } 
 };
 
 ostream& operator <<(ostream &Str, const Ip &ip) { 
@@ -43,13 +62,7 @@ int main() {
             Ips.push_back(Ip(ip_string));
     }
     //sorting
-    sort(Ips.begin(), Ips.end(), 
-        [](const Ip& first, const Ip& second) -> bool {
-            return (first.Parts[0] > second.Parts[0])
-            || (first.Parts[0] == second.Parts[0] && first.Parts[1] > second.Parts[1])
-            || (first.Parts[1] == second.Parts[1] && first.Parts[2] > second.Parts[2])
-            || (first.Parts[2] == second.Parts[2] && first.Parts[3] > second.Parts[3]);
-        });
+    sort(Ips.begin(), Ips.end(), greater<Ip>());
     for(const Ip& ip : Ips) {
         cout << ip << endl;
     }
